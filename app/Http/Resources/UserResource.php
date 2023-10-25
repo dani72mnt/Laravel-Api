@@ -32,14 +32,14 @@ class UserResource extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'id' => $this->id, 
- 			'name' => $this->name, 
- 			'email' => $this->email, 
+            'id'                => $this->id, 
+ 			'name'              => $this->name, 
+ 			'email'             => $this->email, 
  			'email_verified_at' => $this->email_verified_at, 
- 			'password' => $this->password, 
- 			'remember_token' => $this->remember_token, 
- 			'created_at' => $this->created_at, 
- 			'updated_at' => $this->updated_at, 
+ 			'password'          => $this->password, 
+ 			'remember_token'    => $this->remember_token, 
+ 			'created_at'        => $this->created_at, 
+ 			'updated_at'        => $this->updated_at, 
  			
         ];
     }
@@ -53,10 +53,10 @@ class UserResource extends JsonResource
     public function with($request)
     {
         return [
-            'success' => true,
-            'message' => $this->message,
-            'meta' => null,
-            'errors' => null
+            'success'   => true,
+            'message'   => $this->message,
+            'meta'      => null,
+            'errors'    => null
         ];
     }
 }
