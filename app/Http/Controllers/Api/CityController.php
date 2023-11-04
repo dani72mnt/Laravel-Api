@@ -33,10 +33,12 @@ class CityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCityRequest $request, CityService $cityService): CityResource
+    public function store(
+        StoreCityRequest $request,
+        CityService $cityService
+    ): CityResource
     {
-        $params = $request->validated();
-        $city = $cityService->store($params);
+        $city = $cityService->store($request->toDTO());
 
         return CityResource::make($city);
     }
@@ -54,10 +56,13 @@ class CityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCityRequest $request, CityService $cityService, City $city): CityResource
+    public function update(
+        UpdateCityRequest $request,
+        CityService $cityService,
+        City $city
+    ): CityResource
     {
-        $params = $request->validated();
-        $city = $cityService->update($city, $params)->load('province');
+        $city = $cityService->update($city, $request->toDTO())->load('province');
 
         return CityResource::make($city);
     }

@@ -18,21 +18,25 @@ abstract class Repository
         return $this->model->latest()->paginate();
     }
 
-    public function show($id)
+    public function getBy($id)
     {
         return $this->model->find($id);
     }
 
-    public function store(array $data)
+    public function store($data)
     {
         return $this->model->create($data);
     }
 
-    public function update($model, array $data)
+    public function update($model, $data)
     {
         $model->update($data);
 
-        return $model->refresh();
+        if(method_exists($model, 'fresh')){
+            $model->fresh();
+        }
+
+        return $model;
     }
 
 }

@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\City;
 use App\Repositories\CityRepository;
+use App\DataTransferObjects\City\StoreDTO;
+use App\DataTransferObjects\City\UpdateDTO;
 
 class CityService
 {
@@ -14,14 +16,22 @@ class CityService
         $this->city = $city;
     }
 
-    public function store(array $params): mixed
+    public function store(StoreDTO $storeDTO): City
     {
-        return $this->city->store($params);
+        $data = [
+            'name' => $storeDTO->name,
+            'province_id' => $storeDTO->province_id
+        ];
+        return $this->city->store($data);
     }
 
-    function update(City $city, array $params) : ?City
+    function update(City $city, UpdateDTO $updateDTO) : ?City
     {
-        return $this->city->update($city, $params);
+        $data = [
+            'name' => $updateDTO->name,
+            'province_id' => $updateDTO->province_id
+        ];
+        return $this->city->update($city, $data);
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\DataTransferObjects\City\UpdateDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCityRequest extends FormRequest
@@ -25,5 +26,13 @@ class UpdateCityRequest extends FormRequest
             'name'        => 'required|string|max:70',
             'province_id' => 'required|integer|exists:provinces,id',
         ];
+    }
+
+    public function toDTO(): UpdateDTO
+    {
+        return new UpdateDTO([
+            'name' => $this->name,
+            'province_id' => $this->province_id,
+        ]);
     }
 }
